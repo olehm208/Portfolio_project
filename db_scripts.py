@@ -43,8 +43,8 @@ def getAuthData():
 
 def createPost_in_db(data):
     open()
-    do(''' INSERT INTO post (category_id, text, img_formainpage, title, datetime) VALUES (?, ?, ?, ?, ?)''', 
-       [1, data['ckeditor'], data['image'], data['title'], datetime.now().replace(microsecond=0)])
+    do(''' INSERT INTO post (text, img_formainpage, title, datetime) VALUES (?, ?, ?, ?)''', 
+       [data['ckeditor'], data['image'], data['title'], datetime.now().replace(microsecond=0)])
     close()
 
 def updatePost(data, row):
@@ -71,13 +71,6 @@ def updateUser(data):
 def change_password(passw):
     open()
     do('''UPDATE user SET password=(?)''', [passw])
-    close()
-
-def addPost(category_id, post):
-    open()
-    cursor.execute('''INSERT INTO post (category_id,text) VALUES((?),(?))''', [
-                   category_id, post])
-    conn.commit()
     close()
 
 def delPost(post_id):
@@ -120,7 +113,42 @@ def getAllPosts():
     close()
     return results
 
-def generateAdminHash():
-    from werkzeug.security import generate_password_hash
-    user = getUser()
-    change_password(generate_password_hash(user['password']))
+def addQnA(qna):
+    open()
+    cursor.execute('''
+    INSERT INTO QnA (question_title, answer) VALUES (?, ?)
+    ''', [qna['title'], qna['ckeditor']])
+    conn.commit()
+    close()
+
+def deleteQnA(qna_id):
+    open()
+    cursor.execute(
+        '''DELETE FROM QnA WHERE question_id=(?)''', 
+        [qna_id])
+    conn.commit()
+    close()
+
+def UpdateQNA(qna, qna_id):
+    open()
+    cursor.execute('''
+    UPDATE QnA SET question_title=(?), answer=(?) WHERE question_id = (?)
+    ''', [qna['title'], qna['ckeditor'], qna_id])
+    conn.commit()
+    close()
+
+def getAllQuestions():
+    open()
+    cursor.execute('''SELECT * FROM QnA ORDER BY question_id DESC''')
+    results = cursor.fetchall()
+    close()
+    return results
+
+def getQuestionByID(question_id):
+    open()
+    cursor.execute('''
+    SELECT * FROM QnA WHERE question_id = (?) ORDER BY question_id DESC 
+    ''', [question_id])
+    posts = cursor.fetchall()
+    close()
+    return posts

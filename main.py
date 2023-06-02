@@ -162,6 +162,66 @@ def delete_post(post_id):
     deletePost(post_id)
     return redirect(url_for('post_edit'))
 
+@app.route('/admin_panel_super_duper_secret_page/qna_edit/', methods=['GET', 'POST'])
+def qna_edit():
+    if not "AUTH" in session:
+        return render_template("403.html"), 403
+    questions = getAllQuestions()
+    if request.method == 'POST':
+        try:
+            selected_index = int(request.form["question_list"])
+            return redirect(url_for('questionEdit', question_id=selected_index))
+        except:
+            return redirect(url_for('createQuestion'))
+    return render_template('selectQuestion.html', questions=questions)
+
+@app.route('/admin_panel_super_duper_secret_page/createPost/', methods=['GET', 'POST'])
+def createQuestion():
+    if not "AUTH" in session:
+        return render_template("403.html"), 403
+    errors = []
+    if request.method == 'POST':
+
+        qna = request.form.copy()
+
+        if request.form['title'] == '':
+            errors.append('Поле заголовок не може бути пустим!')
+        if request.form.get('ckeditor') == '':
+            errors.append('Поле текст не може бути пустим!')
+        
+        if len(errors) == 0:
+            addQnA(qna)
+            return redirect(url_for('admin_panel'))
+    return render_template('createQuestion.html', errors=errors)
+
+@app.route('/admin_panel_super_duper_secret_page/qna_edit/<question_id>', methods=['GET', 'POST'])
+def questionEdit(question_id):
+    if not "AUTH" in session:
+        return render_template("403.html"), 403
+    og_qnas = getQuestionByID(question_id)[0]
+    qna_answer = og_qnas['answer']
+    errors = []
+    if request.method == 'POST':
+
+        qnas = request.form.copy()
+
+        if request.form['title'] == '':
+            errors.append('Поле заголовок не може бути пустим!')
+        if request.form.get('ckeditor') == '':
+            errors.append('Поле текст не може бути пустим!')
+
+        if len(errors) == 0:
+            UpdateQNA(qnas, question_id)
+            return redirect(url_for('admin_panel'))
+    return render_template('postEdit.html', qna=og_qnas, qna_text=qna_answer, errors=errors, question_id=question_id)
+
+@app.route('/admin_panel_super_duper_secret_page/delete_question/<qna_id>', methods=['POST'])
+def deleteQuestion(qna_id):
+    if not "AUTH" in session:
+        return render_template("403.html"), 403
+    deleteQnA(qna_id)
+    return redirect(url_for('qna_edit'))
+
 app.config["SECRET_KEY"] = "MTEwIDEwMCAxMTYgMTA5IDExMiAzMiA5NyA5OSAxMTYgMTEzIDEyMiAzMiA5NyAxMjI="
 app.config['CKEDITOR_FILE_UPLOADER'] = 'upload'
 
