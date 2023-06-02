@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% block body %}
+{% include 'menu_admin.html'   %}
+<section class="mt-3">
+    {% include "errors.html" %}
+    <div class="card"> 
+      <div class="card-body">
+        <h2 class="my-4 ms-3">
+            Виберіть пост/створити новий пост.
+          </h2> 
+        <form method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <select class="form-select mb-2" size="6" aria-label="size 3 select example" name="posts_list">
+                    {% for post in posts %}
+                    <option value="{{ post.post_id }}">{{post.title}}</option>  
+                    {% endfor %}
+                    <option value="new_post">Новий пост</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Вибрати</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

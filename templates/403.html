@@ -1,0 +1,8 @@
+{% extends "index.html" %}
+{% block title %}Недостатньо прав{% endblock %}
+{% block body %}
+    <h1 class="text-center">Доступ заборонено!</h1>
+    <p class="text-center">Ви не авторизований користувач, тому не можете переглядати цю сторінку.<br>
+        <a class="text-center" href="{{ url_for('index') }}">Перейти на головну сторінку</a>
+    </p>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% block body %}
+<section class="row page_content">
+  <div class="col-12 col-lg-4 offset-lg-4 mt-5">
+    {% include "errors.html" %}
+    <div class="card"> 
+      <div class="card-body">
+        <!-- <h3 class="card-title">Редагування профілю користувача</h3><hr> -->
+        <form method="POST" enctype="multipart/form-data">
+          
+          <div class="mb-3">
+            <label for="login" class="form-label">Логін</label>
+            <input type="text" name="login" id="login" class="form-control" value="{{request.form['login']}}">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Пароль</label>
+            <input type="password" name="password" id="password" class="form-control" value="{{request.form['password']}}">
+          </div>
+    
+          <div class="mb-3">
+            <input type="submit" class="btn btn-primary btn-lg" value="Відправити">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

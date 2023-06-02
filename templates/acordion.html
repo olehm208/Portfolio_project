@@ -1,0 +1,19 @@
+
+  <div class="accordion" id="accordionExample">
+    {% for qna in qnas %}
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading{{ loop.index }}">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}" aria-expanded="false" aria-controls="collapse{{ loop.index }}">
+          {{ qna.question_title }}
+        </button>
+      </h2>
+      <div id="collapse{{ loop.index }}" class="accordion-collapse collapse" aria-labelledby="heading{{ loop.index }}" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          {{ qna.answer | safe}}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  
+  

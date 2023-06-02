@@ -1,0 +1,8 @@
+<div class="container">
+    <header class="d-flex justify-content-center py-3">
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="/home" class="nav-link {%if request.path == '/home' or request.path == '' or request.path == '/'%}active{%endif%}" aria-current="page">Домашня сторінка</a></li>
+        <li class="nav-item"><a href="/posts" class="nav-link {%if request.path == '/posts/'%}active{%endif%}">Проекти</a></li>
+      </ul>
+    </header>
+  </div>

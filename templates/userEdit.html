@@ -1,0 +1,44 @@
+{% extends "index.html" %}
+{% block body %}
+{% include "menu_admin.html"%}
+
+<section class="mt-3">
+  {% include "errors.html" %}
+  <div class="card"> 
+    <div class="card-body">
+      <h2 class="my-4 ms-3">
+        Редагування даних адміністратора
+      </h2> 
+      <form method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="name" class="form-label">Ім'я</label>
+          <input type="text" name="name" id="name" class="form-control" value="{{user.name}}">
+        </div>
+        <div class="mb-3">
+          <label for="title" class="form-label">Фото</label>
+          <input type="file" name="image" id="image" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="login" class="form-label">Логін</label>
+          <input type="text" name="login" id="login" class="form-control" value="{{user.login}}">
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Пароль</label>
+          <input type="password" name="password" id="password" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="password_confirm" class="form-label">Підтвердження паролю</label>
+          <input type="password" name="password_confirm" id="password_confirm" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Опис</label>
+          <textarea name="description" id="description" class="form-control">{{user.description}}</textarea><br>
+        </div> 
+        <div class="mb-3">
+          <input type="submit" class="btn btn-primary btn-lg" value="Відправити">
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

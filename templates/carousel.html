@@ -1,0 +1,16 @@
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active rounded-4" style="background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ url_for('static', filename=post.img_formainpage) }});     
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    border-radius:">
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>{{post.title}}</h1>
+            <p class="text-white">Пост було створено <i class="bi bi-calendar3"></i> {{post.datetime}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
