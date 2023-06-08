@@ -24,18 +24,18 @@
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Пароль</label>
-          <input type="password" name="password" id="password" class="form-control">
+          <input type="password" name="password" id="password" class="form-control" value="{{user.password}}">
         </div>
         <div class="mb-3">
           <label for="password_confirm" class="form-label">Підтвердження паролю</label>
-          <input type="password" name="password_confirm" id="password_confirm" class="form-control">
+          <input type="password" name="password_confirm" id="password_confirm" class="form-control" value="{{user.password}}">
         </div>
         <div class="mb-3">
           <label for="description" class="form-label">Опис</label>
           <textarea name="description" id="description" class="form-control">{{user.description}}</textarea><br>
         </div> 
         <div class="mb-3">
-          <input type="submit" class="btn btn-primary btn-lg" value="Відправити">
+          <input type="submit" class="btn btn-primary btn-lg" value="Зберегти">
         </div>
       </form>
     </div>

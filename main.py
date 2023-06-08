@@ -175,7 +175,7 @@ def qna_edit():
             return redirect(url_for('createQuestion'))
     return render_template('selectQuestion.html', questions=questions)
 
-@app.route('/admin_panel_super_duper_secret_page/createPost/', methods=['GET', 'POST'])
+@app.route('/admin_panel_super_duper_secret_page/createQuestion/', methods=['GET', 'POST'])
 def createQuestion():
     if not "AUTH" in session:
         return render_template("403.html"), 403
@@ -213,7 +213,7 @@ def questionEdit(question_id):
         if len(errors) == 0:
             UpdateQNA(qnas, question_id)
             return redirect(url_for('admin_panel'))
-    return render_template('postEdit.html', qna=og_qnas, qna_text=qna_answer, errors=errors, question_id=question_id)
+    return render_template('questionEdit.html', qna=og_qnas, qna_text=qna_answer, errors=errors, question_id=question_id)
 
 @app.route('/admin_panel_super_duper_secret_page/delete_question/<qna_id>', methods=['POST'])
 def deleteQuestion(qna_id):

@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% block body %}
+{{ ckeditor.load()}}
+{% include 'menu_admin.html'   %}
+<section class="mt-3">
+    {% include "errors.html" %}
+    <div class="card"> 
+      <div class="card-body">
+        <form method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="title" class="form-label">Саме запитання</label>
+                <input type="text" name="title" id="title" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="editor" class="form-label">Відповідь</label>
+                {{ ckeditor.create() }}
+            </div>
+            <div class="mb-3">
+                <input type="submit" class="btn btn-primary btn-lg" value="Відправити">
+            </div>
+        </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
