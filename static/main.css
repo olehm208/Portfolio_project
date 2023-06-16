@@ -4,6 +4,122 @@
   border-color: #000000 !important;
 }
 
+@keyframes circle1Path {
+  0% {
+    top: 50vh;
+    left: 50vw;
+    width: 5vw;
+    height: 5vw;
+    opacity: 0.5;
+  }
+  50% {
+    top: 0vh;
+    left: 45vw;
+    width: 60vw;
+    height: 60vw;
+    opacity: 1;
+  }
+  100% {
+    top: 50vh;
+    left: 50vw;
+    width: 5vw;
+    height: 5vw;
+    opacity: 0.5;
+  }
+}
+@keyframes circle2Path {
+  0% {
+    top: 40vh;
+    left: 45vw;
+    width: 15vw;
+    height: 15vw;
+  }
+  50% {
+    top: 37vh;
+    left: -10vw;
+    width: 80vw;
+    height: 80vw;
+  }
+  100% {
+    top: 40vh;
+    left: 45vw;
+    width: 15vw;
+    height: 15vw;
+  }
+}
+@keyframes circle3Path {
+  0% {
+    top: 30vh;
+    left: 30vw;
+    width: 25vw;
+    height: 25vw;
+  }
+  50% {
+    top: -50vh;
+    left: -20vw;
+    width: 120vw;
+    height: 120vw;
+  }
+  100% {
+    top: 30vh;
+    left: 30vw;
+    width: 25vw;
+    height: 25vw;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+}
+@keyframes fadeCircleIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.circle1 {
+  position: absolute;
+  animation: circle1Path 15s infinite;
+  border-radius: 100vw;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(97, 12, 255, 0.3) 15.62%, rgba(158, 12, 255, 0) 100%);
+}
+
+.circle2 {
+  position: absolute;
+  animation: circle2Path 20s infinite;
+  border-radius: 100vw;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(153, 0, 255, 0.3) 15.62%, rgba(166, 12, 255, 0) 100%);
+}
+
+.circle3 {
+  position: absolute;
+  animation: circle3Path 30s infinite;
+  border-radius: 100vw;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(141, 56, 210, 0.5) 15.62%, rgba(174, 56, 210, 0) 100%);
+}
+
+.preloader {
+  background-color: black;
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.loaded_hiding .preloader {
+  transition: 0.3s opacity;
+  opacity: 0;
+}
+
+.loaded .preloader {
+  display: none;
+}
+
 /*!
  * Bootstrap  v5.3.0-alpha3 (https://getbootstrap.com/)
  * Copyright 2011-2023 The Bootstrap Authors
